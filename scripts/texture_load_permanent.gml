@@ -1,5 +1,5 @@
 ///texture_load_permanent(source) 
-with(instance_create(0,0, texture_volatile)) {
+with(instance_create(0,0, texture_permanent)) {
     background = background_add(argument0, 0,0);
     source = argument0;
 
