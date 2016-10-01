@@ -1,4 +1,4 @@
-//dirvec3(dir, pitch)
+///dirvec3(dir, pitch)
 var v, f;
 f=dcos(argument1);
 

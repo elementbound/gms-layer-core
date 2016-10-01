@@ -19,6 +19,9 @@
       <script>scripts\mesh_vertex.gml</script>
       <script>scripts\mesh_build.gml</script>
     </scripts>
+    <scripts name="meshgen">
+      <script>scripts\meshgen_cylinder.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\assets</object>
