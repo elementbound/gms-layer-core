@@ -6,8 +6,20 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites"/>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\tex_default</background>
+  </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <scripts name="math">
+      <script>scripts\dirvec3.gml</script>
+    </scripts>
+    <scripts name="meshes">
+      <script>scripts\mesh_create.gml</script>
+      <script>scripts\mesh_vertex.gml</script>
+      <script>scripts\mesh_build.gml</script>
+    </scripts>
+  </scripts>
   <objects name="objects">
     <object>objects\assets</object>
     <object>objects\texture_g</object>
