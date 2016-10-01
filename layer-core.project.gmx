@@ -29,6 +29,7 @@
     <scripts name="util">
       <script>scripts\concat.gml</script>
       <script>scripts\rtdbg.gml</script>
+      <script>scripts\get_time.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
