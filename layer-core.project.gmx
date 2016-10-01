@@ -33,6 +33,10 @@
     <object>objects\camera</object>
     <object>objects\mesh_object</object>
   </objects>
+  <rooms name="rooms">
+    <room>rooms\rSize</room>
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>

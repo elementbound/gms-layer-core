@@ -39,13 +39,13 @@ for(var i = 0; i < steps; i++) {
     var u_current = i/steps;
     var u_next = (i+1)/steps;
     
-    mesh_vertex(mesh, v_current[0],v_current[1], 1, v_mid[0],v_mid[1],0);
-    mesh_vertex(mesh, v_next[0],   v_next[1],    1, v_mid[0],v_mid[1],0);
-    mesh_vertex(mesh, v_current[0],v_current[1],-1, v_mid[0],v_mid[1],0);
+    mesh_vertex(mesh, v_current[0],v_current[1], 1, v_mid[0],v_mid[1],0, u_current,0);
+    mesh_vertex(mesh, v_next[0],   v_next[1],    1, v_mid[0],v_mid[1],0, u_next,   0);
+    mesh_vertex(mesh, v_current[0],v_current[1],-1, v_mid[0],v_mid[1],0, u_current,1);
     
-    mesh_vertex(mesh, v_next[0],   v_next[1],    1, v_mid[0],v_mid[1],0);
-    mesh_vertex(mesh, v_current[0],v_current[1],-1, v_mid[0],v_mid[1],0);
-    mesh_vertex(mesh, v_next[0],   v_next[1],   -1, v_mid[0],v_mid[1],0);
+    mesh_vertex(mesh, v_next[0],   v_next[1],    1, v_mid[0],v_mid[1],0, u_next,   0);
+    mesh_vertex(mesh, v_current[0],v_current[1],-1, v_mid[0],v_mid[1],0, u_current,1);
+    mesh_vertex(mesh, v_next[0],   v_next[1],   -1, v_mid[0],v_mid[1],0, u_next,   1);
 }
 
 // Build and return
