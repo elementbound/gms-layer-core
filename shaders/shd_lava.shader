@@ -16,6 +16,8 @@ void main()
 //######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec3 v_Position;
 varying vec3 v_Normal;
 
+uniform float u_Subtract; 
+
 uniform sampler2D u_Ramp; 
 
 // Triplanar projection
@@ -33,6 +35,10 @@ vec4 textureTriplanar(sampler2D texture, vec3 texCoord, vec3 texWeights)
 void main()
 {
     float intensity = textureTriplanar( gm_BaseTexture, v_Position, abs(normalize(v_Normal))).r;
+    
+    if(intensity < u_Subtract)
+        discard; 
+        
     gl_FragColor = texture2D(u_Ramp, vec2(intensity, 0.0));
 }
 

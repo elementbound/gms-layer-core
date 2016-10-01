@@ -68,19 +68,31 @@ if(assets.working) {
 }
 
 with(instance_create(0,0, camera_orbit)) {
-    distance = 4;
+    distance = 1.5;
     zfar = 64;
+    fov = 145;
     
     rotx = -30;
     rotz = 30;
 }
 
-with(instance_create(0,0, mesh_object)) {
-    data = assets.meshes[?"sphere"];
-    texture = assets.textures[?"lava-noise"];
+core_layers = ds_list_create();
+var n = 8;
+for(var i = 0; i &lt; n; i++) {
+    with(instance_create(0,0, mesh_object)) {
+        scalx = lerp(1, 1.25, i/n);
+        scaly = scalx;
+        scalz = scalx;
     
-    shader = shd_lava;
-    samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
+        data = assets.meshes[?"sphere"];
+        texture = assets.textures[?"lava-noise"];
+        
+        shader = shd_lava;
+        samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
+        uniforms[?"u_Subtract"] = array(i/n);
+        
+        ds_list_add(other.core_layers, id); 
+    }
 }
 
 done = true; 
@@ -109,9 +121,20 @@ done = true;
             <string>if(!done)
     exit;
     
-var f = (get_time() mod 8000) / 8000;
+var f = (get_time() mod 30000) / 30000;
 with(camera)
     rotz = f * 360;
+    
+var f = (get_time() mod 16000) / 16000;
+f = (1 + sin(f*2*pi))/2; 
+
+var p = lerp(2, 0.5, f);
+var n = ds_list_size(core_layers); 
+for(var i = 0; i &lt; n; i++) {
+    with(core_layers[|i]) {
+        uniforms[?"u_Subtract"] = array(lerp(0, 0.875, power(i/n, p)));
+    }
+}
 </string>
           </argument>
         </arguments>
