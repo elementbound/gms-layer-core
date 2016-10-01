@@ -20,11 +20,21 @@ varying vec2 v_TransformCoord;
 uniform float u_SideIntensity;
 uniform vec4 u_Ambient;
 uniform sampler2D u_Sides;
+uniform sampler2D u_Noise; 
 
 void main()
 {
     vec4 base = texture2D( gm_BaseTexture, v_Texcoord );
     vec4 side = texture2D(u_Sides, v_TransformCoord);
-    gl_FragColor = mix(base, base*side, u_SideIntensity) + u_Ambient;
+    vec4 crustColor = mix(base, base*side, u_SideIntensity) + u_Ambient;
+    
+    float noise = texture2D(u_Noise, v_TransformCoord).x; 
+    float thresh = abs(v_Texcoord.y*2.0 - 1.0);
+    thresh = pow(thresh, 16.0);
+    
+    if(noise < thresh)
+        gl_FragColor = vec4(0.37, 0.405, 0.0, 1.0);
+    else 
+        gl_FragColor = crustColor;
 }
 
