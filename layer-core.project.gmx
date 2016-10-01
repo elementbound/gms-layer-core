@@ -8,6 +8,16 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <objects name="objects">
+    <object>objects\assets</object>
+    <object>objects\texture_g</object>
+    <object>objects\texture_volatile</object>
+    <object>objects\texture_permanent</object>
+    <object>objects\mesh_data</object>
+    <object>objects\renderer</object>
+    <object>objects\camera</object>
+    <object>objects\mesh_object</object>
+  </objects>
   <help>
     <rtf>help.rtf</rtf>
   </help>
