@@ -90,27 +90,42 @@ for(var i = 0; i &lt; n; i++) {
         
         shader = shd_lava;
         samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
-        uniforms[?"u_Subtract"] = array(i/n);
+        uniforms[?"u_Subtract"] = i/n;
         
         ds_list_add(other.core_layers, id); 
     }
 }
 
 // Create earth 'crust'
-var n = 64;
+var n = irandom_range(48,64);
 for(var i = 0; i &lt; n; i++) {
     with(instance_create(0,0, mesh_object)) {
         data = assets.meshes[?"cylinder"]; 
         texture = assets.textures[?"earth-ramp"]; 
         
-        rotx = random(360);
-        rotz = random(360); 
+        // Could just use this, but its distribution is denser towards the poles
+        ///rotx = random(360);
+        //rotz = random(360); 
+        
+        // Instead create a random vector, normalize, use as orientation
+        var ox, oy, oz;
+        ox = random_range(1,-1);
+        oy = random_range(1,-1);
+        oz = random_range(1,-1);
+        
+        rotz = point_direction(0,0, ox,oy);
+        rotx = point_direction(0,0, point_distance(0,0, ox,oy), oz) + 90; 
         
         scalx = random_range(0.0875, 0.125);
         scaly = scalx;
         scalz = random_range(1.25, 1.5); 
         
         shader = shd_earth; 
+        
+        samplers[?"u_Sides"] = assets.textures[?"sides"];
+        uniforms[?"u_SideIntensity"] = random_range(0.75, 1);
+        uniforms[?"u_Ambient"] = array(0.95/4, 0.325/4, 0.0/4, 0.0);
+        uniforms[?"u_TextureMatrix"] = matrix_build(irandom(32)/32,0,0, 0,0,0, 6/32,1,1);
     }
 }
 
@@ -151,7 +166,7 @@ var p = lerp(2, 0.5, f);
 var n = ds_list_size(core_layers); 
 for(var i = 0; i &lt; n; i++) {
     with(core_layers[|i]) {
-        uniforms[?"u_Subtract"] = array(lerp(0, 0.875, power(i/n, p)));
+        uniforms[?"u_Subtract"] = lerp(0, 0.875, power(i/n, p));
     }
 }
 </string>

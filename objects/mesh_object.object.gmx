@@ -89,7 +89,13 @@ samplers = ds_map_create();
     // Set uniforms
     if(!ds_map_empty(uniforms))
         for(var k = ds_map_find_first(uniforms); true; k = ds_map_find_next(uniforms, k)) {
-            shader_set_uniform_f_array(shu(k), uniforms[?k]);
+            var v = uniforms[?k];
+            if(is_real(v))
+                shader_set_uniform_f(shu(k), v);
+            else if(array_length_1d(v) == 16)
+                shader_set_uniform_matrix_array(shu(k), v);
+            else 
+                shader_set_uniform_f_array(shu(k), v);
         
             if(k == ds_map_find_last(uniforms))
                 break;

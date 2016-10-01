@@ -10,7 +10,9 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>w = display_get_width();
+  <code>randomize(); 
+
+w = display_get_width();
 h = display_get_height(); 
 f = true;
 aa = 0;
