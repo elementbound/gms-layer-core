@@ -18,9 +18,12 @@ void main()
 varying vec2 v_TransformCoord;
 
 uniform float u_SideIntensity;
+uniform float u_GrassStart;
 uniform vec4 u_Ambient;
+
 uniform sampler2D u_Sides;
 uniform sampler2D u_Noise; 
+uniform sampler2D u_GrassRamp;
 
 void main()
 {
@@ -30,10 +33,10 @@ void main()
     
     float noise = texture2D(u_Noise, v_TransformCoord).x; 
     float thresh = abs(v_Texcoord.y*2.0 - 1.0);
-    thresh = pow(thresh, 16.0);
+    thresh = (thresh - u_GrassStart)/(1.0 - u_GrassStart);
     
     if(noise < thresh)
-        gl_FragColor = vec4(0.37, 0.405, 0.0, 1.0);
+        gl_FragColor = texture2D(u_GrassRamp, vec2(thresh,0.0));
     else 
         gl_FragColor = crustColor;
 }

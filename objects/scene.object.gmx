@@ -124,7 +124,9 @@ for(var i = 0; i &lt; n; i++) {
         
         samplers[?"u_Sides"] = assets.textures[?"sides"];
         samplers[?"u_Noise"] = assets.textures[?"grass-noise"];
+        samplers[?"u_GrassRamp"] = assets.textures[?"grass-ramp"]; 
         
+        uniforms[?"u_GrassStart"] = random_range(0.925, 0.975);
         uniforms[?"u_SideIntensity"] = random_range(0.75, 1);
         uniforms[?"u_Ambient"] = array(0.95/4, 0.325/4, 0.0/4, 0.0);
         uniforms[?"u_TextureMatrix"] = matrix_build(irandom(32)/32,0,0, 0,0,0, 6/32,1,1);
