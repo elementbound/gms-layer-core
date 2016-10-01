@@ -97,6 +97,7 @@ for(var i = 0; i &lt; n; i++) {
 }
 
 // Create earth 'crust'
+pillars = ds_list_create(); 
 var n = irandom_range(48,64);
 for(var i = 0; i &lt; n; i++) {
     with(instance_create(0,0, mesh_object)) {
@@ -130,6 +131,13 @@ for(var i = 0; i &lt; n; i++) {
         uniforms[?"u_SideIntensity"] = random_range(0.75, 1);
         uniforms[?"u_Ambient"] = array(0.95/4, 0.325/4, 0.0/4, 0.0);
         uniforms[?"u_TextureMatrix"] = matrix_build(irandom(32)/32,0,0, 0,0,0, 6/32,1,1);
+        
+        base_scale = scalz; 
+        swing_strength = random_range(1/4, 1/2) / (base_scale * 2);
+        swing_time = 1000 * power(2, irandom(8) / 4);
+        swing_offset = 0; //irandom(4)/4 * swing_time;
+        
+        ds_list_add(other.pillars, id); 
     }
 }
 
@@ -171,6 +179,15 @@ var n = ds_list_size(core_layers);
 for(var i = 0; i &lt; n; i++) {
     with(core_layers[|i]) {
         uniforms[?"u_Subtract"] = lerp(0, 0.875, power(i/n, p));
+    }
+}
+
+var n = ds_list_size(pillars);
+for(var i = 0; i &lt; pillars; i++) {
+    with(pillars[|i]) {
+        var f = ((get_time() - swing_offset) mod swing_time) / swing_time; 
+        f = (1+sin(f*2*pi))/2;
+        scalz = base_scale * lerp(1-swing_strength, 1+swing_strength, f);
     }
 }
 </string>

@@ -28,16 +28,17 @@ uniform sampler2D u_GrassRamp;
 void main()
 {
     vec4 base = texture2D( gm_BaseTexture, v_Texcoord );
-    vec4 side = texture2D(u_Sides, v_TransformCoord);
-    vec4 crustColor = mix(base, base*side, u_SideIntensity) + u_Ambient;
     
     float noise = texture2D(u_Noise, v_TransformCoord).x; 
     float thresh = abs(v_Texcoord.y*2.0 - 1.0);
     thresh = (thresh - u_GrassStart)/(1.0 - u_GrassStart);
     
     if(noise < thresh)
-        gl_FragColor = texture2D(u_GrassRamp, vec2(thresh,0.0));
-    else 
-        gl_FragColor = crustColor;
+        base = texture2D(u_GrassRamp, vec2(thresh,0.0));
+        
+    vec4 side = texture2D(u_Sides, v_TransformCoord);
+    vec4 crustColor = mix(base, base*side, u_SideIntensity) + u_Ambient;
+    
+    gl_FragColor = crustColor; 
 }
 
