@@ -29,7 +29,7 @@
 rotx = 0; roty = 0; rotz = 0;
 fov = 90;
 znear = 1/64;
-zfar = 4;
+zfar = 64;
 </string>
           </argument>
         </arguments>
