@@ -33,6 +33,8 @@ vertex_format_begin();
     vertex_format_add_textcoord();
     vertex_format_add_normal();
 vf_default = vertex_format_end();
+
+texture_set_repeat(1);
 </string>
           </argument>
         </arguments>

@@ -87,24 +87,28 @@ samplers = ds_map_create();
     shader_bind(shader);
     
     // Set uniforms
-    for(var k = ds_map_find_first(uniforms); true; k = ds_map_find_next(uniforms, k)) {
-        shader_set_uniform_f_array(shu(k), uniforms[?k]);
-    
-        if(k == ds_map_find_last(uniforms))
-            break;
-    }
+    if(!ds_map_empty(uniforms))
+        for(var k = ds_map_find_first(uniforms); true; k = ds_map_find_next(uniforms, k)) {
+            shader_set_uniform_f_array(shu(k), uniforms[?k]);
+        
+            if(k == ds_map_find_last(uniforms))
+                break;
+        }
     
     // Set samplers
-    for(var k = ds_map_find_first(samplers); true; k = ds_map_find_next(samplers, k)) {
-        texture_set_stage(shs(k), samplers[?k].data);
-    
-        if(k == ds_map_find_last(samplers))
-            break;
-    }
+    if(!ds_map_empty(samplers))
+        for(var k = ds_map_find_first(samplers); true; k = ds_map_find_next(samplers, k)) {
+            texture_set_stage(shs(k), samplers[?k].data);
+        
+            if(k == ds_map_find_last(samplers))
+                break;
+        }
 }
 
 matrix_set(matrix_world, matrix);
 vertex_submit(data.buffer, pr_trianglelist, texture.data); 
+
+shader_unbind(); 
 </string>
           </argument>
         </arguments>

@@ -77,7 +77,10 @@ with(instance_create(0,0, camera_orbit)) {
 
 with(instance_create(0,0, mesh_object)) {
     data = assets.meshes[?"sphere"];
-    texture = assets.textures[?"grass-noise"];
+    texture = assets.textures[?"lava-noise"];
+    
+    shader = shd_lava;
+    samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
 }
 
 done = true; 

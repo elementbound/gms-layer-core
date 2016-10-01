@@ -29,6 +29,7 @@
 meshes = ds_map_create(); 
 
 default_texture = background_get_texture(tex_default);
+default_textype = "texture/volatile";
 
 queue = ds_queue_create(); 
 working = true; 
@@ -66,7 +67,10 @@ else {
     var name = ds_queue_dequeue(queue); 
     var data = ds_queue_dequeue(queue); 
     
-    if(type == "texture" || type == "texture/volatile") 
+    if(type == "texture")
+        type = default_textype;
+        
+    if(type == "texture/volatile") 
         textures[?name] = texture_load_volatile(data);
     else if(type == "texture/permanent")
         textures[?name] = texture_load_permanent(data);
