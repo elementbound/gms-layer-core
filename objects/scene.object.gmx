@@ -30,8 +30,8 @@ ds_queue_enqueue(assets.queue, "mesh/gen", "cylinder", meshgen_cylinder, 6);
 ds_queue_enqueue(assets.queue, "mesh/gen", "sphere", meshgen_uvsphere, 32); 
 
 ds_queue_enqueue(assets.queue, "texture", "earth-ramp", "textures/earth-gradient.png");
-ds_queue_enqueue(assets.queue, "texture", "grass-ramp", "textures/grass-gradient.png");
-ds_queue_enqueue(assets.queue, "texture", "lava-ramp", "textures/lava-gradient.png");
+ds_queue_enqueue(assets.queue, "texture", "grass-ramp", "textures/grass-ramp.png");
+ds_queue_enqueue(assets.queue, "texture", "lava-ramp", "textures/lava-ramp.png");
 ds_queue_enqueue(assets.queue, "texture", "grass-noise", "textures/grass-noise.png");
 ds_queue_enqueue(assets.queue, "texture", "lava-noise", "textures/lava-noise.png");
 ds_queue_enqueue(assets.queue, "texture", "sides", "textures/sides.png");
