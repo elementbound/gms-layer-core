@@ -15,7 +15,7 @@
 w = display_get_width();
 h = display_get_height(); 
 f = true;
-aa = 0;
+aa = 2;
 r = room0;
 
 room_set_width(r,w);

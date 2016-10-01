@@ -35,6 +35,7 @@ queue = ds_queue_create();
 working = true; 
 
 log = ""; 
+log_reset = 0;
 </string>
           </argument>
         </arguments>
@@ -79,7 +80,38 @@ else {
         meshes[?name] = script_execute(data, detail); 
     }
     
-    log = concat('[', type, ']', name);
+    log += concat('[', type, ']', name, '#');
+    log_reset = max(get_time()+1000, log_reset+1000);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reload lost textures
+with(texture_volatile) {
+    if(reload_needed) {
+        texture_reload(id);
+        
+        other.log += concat("Reloaded ", source, "#");
+        other.log_reset = max(get_time()+1000, other.log_reset+1000); 
+        break; 
+    }
 }
 </string>
           </argument>
@@ -103,11 +135,12 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(working) {
-    draw_set_valign(fa_bottom);
-    draw_text(0,room_height, log); 
-    draw_set_valign(fa_top); 
-}
+            <string>draw_set_valign(fa_bottom);
+draw_text(0,room_height, log); 
+draw_set_valign(fa_top); 
+
+if(get_time() &gt; log_reset)
+    log = ""; 
 </string>
           </argument>
         </arguments>
