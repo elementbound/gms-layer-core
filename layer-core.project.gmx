@@ -132,6 +132,7 @@
     <scripts name="textures">
       <script>scripts\texture_load_volatile.gml</script>
       <script>scripts\texture_load_permanent.gml</script>
+      <script>scripts\texture_from_background.gml</script>
     </scripts>
     <scripts name="util">
       <script>scripts\concat.gml</script>

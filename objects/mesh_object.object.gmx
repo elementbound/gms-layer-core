@@ -105,8 +105,17 @@ samplers = ds_map_create();
         }
 }
 
-matrix_set(matrix_world, matrix);
-vertex_submit(data.buffer, pr_trianglelist, texture.data); 
+d3d_transform_set_identity();
+    d3d_transform_add_scaling(scalx, scaly,scalz);
+    
+    d3d_transform_add_rotation_x(rotx);
+    d3d_transform_add_rotation_z(rotz);
+    
+    d3d_transform_add_translation(x,y,z);
+    
+    vertex_submit(data.buffer, pr_trianglelist, texture.data); 
+
+d3d_transform_set_identity();
 
 shader_unbind(); 
 </string>

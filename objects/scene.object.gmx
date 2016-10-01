@@ -68,7 +68,7 @@ if(assets.working) {
 }
 
 with(instance_create(0,0, camera_orbit)) {
-    distance = 1.75;
+    distance = 1.5;
     zfar = 64;
     fov = 145;
     
@@ -97,19 +97,18 @@ for(var i = 0; i &lt; n; i++) {
 }
 
 // Create earth 'crust'
-var n = 8;
+var n = 64;
 for(var i = 0; i &lt; n; i++) {
     with(instance_create(0,0, mesh_object)) {
         data = assets.meshes[?"cylinder"]; 
         texture = assets.textures[?"earth-ramp"]; 
         
         rotx = random(360);
-        roty = random(360);
         rotz = random(360); 
         
         scalx = random_range(0.0875, 0.125);
         scaly = scalx;
-        /*scalz = random_range(0.75, 1.5); */
+        scalz = random_range(1.25, 1.5); 
         
         shader = shd_earth; 
     }

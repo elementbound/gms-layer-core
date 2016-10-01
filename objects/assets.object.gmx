@@ -28,7 +28,7 @@
             <string>textures = ds_map_create(); 
 meshes = ds_map_create(); 
 
-default_texture = background_get_texture(tex_default);
+default_texture = texture_from_background(tex_default);
 default_textype = "texture/volatile";
 
 queue = ds_queue_create(); 
