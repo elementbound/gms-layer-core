@@ -29,6 +29,13 @@
 ds_queue_enqueue(assets.queue, "mesh/gen", "cylinder", meshgen_cylinder, 6); 
 ds_queue_enqueue(assets.queue, "mesh/gen", "sphere", meshgen_uvsphere, 32); 
 
+ds_queue_enqueue(assets.queue, "texture", "earth-ramp", "textures/earth-gradient.png");
+ds_queue_enqueue(assets.queue, "texture", "grass-ramp", "textures/grass-gradient.png");
+ds_queue_enqueue(assets.queue, "texture", "lava-ramp", "textures/lava-gradient.png");
+ds_queue_enqueue(assets.queue, "texture", "grass-noise", "textures/grass-noise.png");
+ds_queue_enqueue(assets.queue, "texture", "lava-noise", "textures/lava-noise.png");
+ds_queue_enqueue(assets.queue, "texture", "sides", "textures/sides.png");
+
 done = false; 
 
 alarm[0] = 1;
@@ -70,7 +77,7 @@ with(instance_create(0,0, camera_orbit)) {
 
 with(instance_create(0,0, mesh_object)) {
     data = assets.meshes[?"sphere"];
-    texture = assets.default_texture;
+    texture = assets.textures[?"grass-noise"];
 }
 
 done = true; 

@@ -3,6 +3,112 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="12" name="datafiles">
+    <datafiles number="12" name="textures">
+      <datafile>
+        <name>earth-gradient.png</name>
+        <exists>-1</exists>
+        <size>2063</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>earth-gradient.png</filename>
+      </datafile>
+      <datafile>
+        <name>grass-noise.png</name>
+        <exists>-1</exists>
+        <size>2820152</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>grass-noise.png</filename>
+      </datafile>
+      <datafile>
+        <name>grass-ramp.png</name>
+        <exists>-1</exists>
+        <size>2009</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>grass-ramp.png</filename>
+      </datafile>
+      <datafile>
+        <name>lava-noise.png</name>
+        <exists>-1</exists>
+        <size>730280</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lava-noise.png</filename>
+      </datafile>
+      <datafile>
+        <name>lava-ramp.png</name>
+        <exists>-1</exists>
+        <size>1040</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lava-ramp.png</filename>
+      </datafile>
+      <datafile>
+        <name>sides.png</name>
+        <exists>-1</exists>
+        <size>330662</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>sides.png</filename>
+      </datafile>
+    </datafiles>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites"/>
@@ -32,6 +138,12 @@
       <script>scripts\rtdbg.gml</script>
       <script>scripts\get_time.gml</script>
       <script>scripts\array.gml</script>
+    </scripts>
+    <scripts name="shaders">
+      <script>scripts\shader_bind.gml</script>
+      <script>scripts\shader_unbind.gml</script>
+      <script>scripts\shu.gml</script>
+      <script>scripts\shs.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">

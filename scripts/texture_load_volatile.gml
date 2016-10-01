@@ -1,6 +1,14 @@
 ///texture_load_volatile(source) 
 with(instance_create(0,0, texture_volatile)) {
     var background = background_add(argument0, 0,0);
+    
+    if(!background_exists(background)) {
+        show_error("Couldn't load " + argument0, 0);
+        data = assets.default_texture;
+        
+        return id; 
+    }
+    
     source = argument0;
 
     width = background_get_width(background);
