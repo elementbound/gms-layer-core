@@ -22,6 +22,14 @@
     <scripts name="meshgen">
       <script>scripts\meshgen_cylinder.gml</script>
     </scripts>
+    <scripts name="textures">
+      <script>scripts\texture_load_volatile.gml</script>
+      <script>scripts\texture_load_permanent.gml</script>
+    </scripts>
+    <scripts name="util">
+      <script>scripts\concat.gml</script>
+      <script>scripts\rtdbg.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\assets</object>
@@ -31,7 +39,10 @@
     <object>objects\mesh_data</object>
     <object>objects\renderer</object>
     <object>objects\camera</object>
+    <object>objects\camera_orbit</object>
     <object>objects\mesh_object</object>
+    <object>objects\ui</object>
+    <object>objects\scene</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rSize</room>

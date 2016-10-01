@@ -8,80 +8,6 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>textures = ds_map_create(); 
-meshes = ds_map_create(); 
-
-default_texture = background_get_texture(tex_default);
-
-queue = ds_queue_create(); 
-working = true; 
-
-log = ""; 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Load queued resources 
-if(ds_queue_empty(queue)) 
-    working = false; 
-else {
-    working = true;
-    
-    var type = ds_queue_dequeue(queue);
-    var name = ds_queue_dequeue(queue); 
-    var data = ds_queue_dequeue(queue); 
-    
-    if(type == "texture" || type == "texture/volatile") 
-        textures[?name] = texture_load_volatile(data);
-    else if(type == "texture/permanent")
-        textures[?name] = texture_load_permanent(data);
-    else if(type = "mesh/gen") {
-        var detail = ds_queue_dequeue(queue); 
-        meshes[?name] = script_execute(data, detail); 
-    }
-    
-    log = concat('[', type, ']', name);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -99,11 +25,30 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(working) {
-    draw_set_valign(fa_bottom);
-    draw_text(0,room_height, log); 
-    draw_set_valign(fa_top); 
-}
+            <string>draw_text(0,0, string(fps)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_end(); 
 </string>
           </argument>
         </arguments>

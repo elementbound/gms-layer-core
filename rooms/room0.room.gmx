@@ -12,7 +12,9 @@
   <showcolour>-1</showcolour>
   <code>instance_create(0,0, assets);
 instance_create(0,0, renderer); 
-instance_create(0,0, camera);</code>
+instance_create(0,0, ui);
+
+instance_create(0,0, camera_orbit);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

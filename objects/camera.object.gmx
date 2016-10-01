@@ -55,57 +55,6 @@ zfar = 64;
             <string>var fv = dirvec3(rotz, rotx);
 
 d3d_set_projection_ext(x,y,z, x+fv[0],y+fv[1],z+fv[2], 0,0,1, fov, room_width/room_height, znear,zfar);
-
-// Test scene 
-
-d3d_set_projection(4,4,4, 0,0,0, 0,0,1);
-d3d_draw_block(-1,-1,-1, 1,1,1, assets.default_texture,1,1); 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_text(0,0, string(fps)); 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>game_end(); 
 </string>
           </argument>
         </arguments>

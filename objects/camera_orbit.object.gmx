@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>camera</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,21 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>textures = ds_map_create(); 
-meshes = ds_map_create(); 
+            <string>event_inherited();
 
-default_texture = background_get_texture(tex_default);
+distance = 8;
+zfar = distance*2;
 
-queue = ds_queue_create(); 
-working = true; 
-
-log = ""; 
+origin_x = 0;
+origin_y = 0;
+origin_z = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -56,54 +55,11 @@ log = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Load queued resources 
-if(ds_queue_empty(queue)) 
-    working = false; 
-else {
-    working = true;
-    
-    var type = ds_queue_dequeue(queue);
-    var name = ds_queue_dequeue(queue); 
-    var data = ds_queue_dequeue(queue); 
-    
-    if(type == "texture" || type == "texture/volatile") 
-        textures[?name] = texture_load_volatile(data);
-    else if(type == "texture/permanent")
-        textures[?name] = texture_load_permanent(data);
-    else if(type = "mesh/gen") {
-        var detail = ds_queue_dequeue(queue); 
-        meshes[?name] = script_execute(data, detail); 
-    }
-    
-    log = concat('[', type, ']', name);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(working) {
-    draw_set_valign(fa_bottom);
-    draw_text(0,room_height, log); 
-    draw_set_valign(fa_top); 
-}
+            <string>var fv = dirvec3(rotz, rotx);
+
+x = origin_x - fv[0]*distance;
+y = origin_y - fv[1]*distance;
+z = origin_z - fv[2]*distance; 
 </string>
           </argument>
         </arguments>
