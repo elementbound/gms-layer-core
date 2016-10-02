@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited(); 
+            <string>// Volatile textures consume less memory, since their data is only stored 
+// in surfaces, which resides on the GPU. The drawback is that surfaces can 
+// just vanish. If that happens, we'll resort to a default texture until it's 
+// reloaded. 
+// See the assets object's step event for that. 
+
+event_inherited(); 
 
 surface = -1;
 
@@ -52,7 +58,8 @@ reload_needed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(surface_exists(surface))
+            <string>/// Cleanup
+if(surface_exists(surface))
     surface_free(surface); 
 </string>
           </argument>
@@ -76,7 +83,8 @@ reload_needed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!surface_exists(surface)) {
+            <string>/// Check for lost surface
+if(!surface_exists(surface)) {
     surface = -1;
     data = assets.default_texture.data; 
     

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// Permanent textures are well... permanent. In the sense that they are stored 
+// in backgrounds, which don't tend to just get lost. The drawback is increased
+// memory usage. 
+
+event_inherited();
 
 background = -1;
 </string>
@@ -50,7 +54,10 @@ background = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>background_delete(background); 
+            <string>/// Cleanup
+// Remove background if it was loaded from an external file
+if(source != "&lt;internal&gt;")
+    background_delete(background); 
 </string>
           </argument>
         </arguments>

@@ -12,20 +12,28 @@
   <showcolour>-1</showcolour>
   <code>randomize(); 
 
+f = true;
+aa = 2;
+aa_mode = 'brute';
 w = display_get_width();
 h = display_get_height(); 
-f = true;
-aa = 0;
 r = room0;
 
 room_set_width(r,w);
 room_set_height(r,h);
     
 window_set_fullscreen(f);
+if(aa_mode == 'brute') {
+    w *= aa; 
+    h *= aa;
+} else if(aa_mode == 'msaa') {
+    display_reset(aa, 0); 
+}
+
 window_set_size(w,h);
 surface_resize(application_surface, w,h); 
 
-display_reset(aa, 0);
+display_reset(0, 0);
 
 room_goto(r);</code>
   <enableViews>0</enableViews>

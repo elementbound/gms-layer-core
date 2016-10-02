@@ -28,7 +28,7 @@
             <string>width = 0;
 height = 0;
 
-data = 0;
+data = -1;
 
 source = ""; 
 </string>

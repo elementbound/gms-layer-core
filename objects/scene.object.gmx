@@ -184,7 +184,9 @@ done = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!done)
+            <string>/// Animate scene
+// !done means that the loader didn't finish and there's no scene to animate
+if(!done)
     exit;
     
 var f = (get_time() mod 30000) / 30000;

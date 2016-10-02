@@ -101,6 +101,8 @@ if(show_fps == 1) {
         attribute = "smooth";
     else if(fps &lt; 120)
         attribute = "glamorous";
+    else if(fps &lt; 144)
+        attribute = "glorious"; 
     else 
         attribute = "perplexingly silky";
         

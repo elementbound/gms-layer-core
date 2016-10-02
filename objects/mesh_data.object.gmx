@@ -55,6 +55,9 @@ buffer = -1;
             <string>ds_list_destroy(positions);
 ds_list_destroy(texcoords);
 ds_list_destroy(normals); 
+
+if(buffer != -1)
+    vertex_delete_buffer(buffer); 
 </string>
           </argument>
         </arguments>
