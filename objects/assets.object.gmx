@@ -30,7 +30,7 @@ textures = ds_map_create();
 meshes = ds_map_create(); 
 
 default_texture = texture_from_background(tex_default);
-default_textype = "texture/volatile";
+default_textype = "texture/permanent";
 
 // Resources to be loaded
 queue = ds_queue_create(); 
