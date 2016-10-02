@@ -8,6 +8,31 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>show_fps = true;
+show_help = true; 
+show_ui = true; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="77">
       <action>
         <libid>1</libid>
@@ -25,7 +50,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(ord('Q'))) {
+            <string>/// Lose textures 
+// Can't really do this in a simple keyboard event, because the surfaces are in use
+if(keyboard_check(ord('Q'))) {
     with(texture_volatile) {
         if(reload_needed)
             continue;
@@ -56,7 +83,137 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(0,0, string(fps)); 
+            <string>if(!show_ui)
+    exit; 
+
+var txt = "layer-core#";
+txt += "Presented by ~elementbound#";
+
+if(show_fps == 1) {
+    txt += concat("~", fps, "#");
+} else if(show_fps == 2) {
+    var attribute; 
+    if(fps &lt; 20)
+        attribute = "stuttering";
+    else if(fps &lt; 30)
+        attribute = "chunky";
+    else if(fps &lt; 60)
+        attribute = "smooth";
+    else if(fps &lt; 120)
+        attribute = "glamorous";
+    else 
+        attribute = "perplexingly silky";
+        
+    txt += concat("#Currently the demo is sailing at a ", attribute, " ", fps, " fps#");
+}
+
+if(show_help) {
+    txt += "#Help: #";
+    txt += "[Q] Lose textures#";
+    txt += "[W] Toggle help#";
+    txt += "[E] Toggle FPS#";
+    txt += "[R] Toggle UI (this whole thing)#";
+    txt += "[T] Toggle asset manager log ( bottom left log )#";
+    txt += "[Esc] Escape";
+}
+
+draw_text(0,0, txt); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="87">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Toggle help
+show_help = !show_help; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="84">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Toggle assetman log
+assets.visible = !assets.visible; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="82">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Toggle UI 
+show_ui = !show_ui; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="69">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Toggle FPS 
+show_fps = (show_fps+1) mod 3;
 </string>
           </argument>
         </arguments>
@@ -79,7 +236,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>game_end(); 
+            <string>/// Quit
+game_end(); 
 </string>
           </argument>
         </arguments>
