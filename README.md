@@ -27,6 +27,8 @@ After adding 21 MBs of 2k PNG files and running it again:
   * With volatile textures: 350 MB
   * With permanent textures: 520 MB
 
+## Settings ##
+
 ## Code ##
 
 Some things worth checking out are:
@@ -74,4 +76,4 @@ Lastly, we need to give the cylinders the feeling that they are over a molten co
 
 ### Asset loading ###
 
-### Utility scripts ### 
+### Utility scripts ###
