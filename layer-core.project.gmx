@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="12" name="datafiles">
-    <datafiles number="12" name="textures">
+  <datafiles number="28" name="datafiles">
+    <datafiles number="28" name="textures">
       <datafile>
         <name>earth-gradient.png</name>
         <exists>-1</exists>

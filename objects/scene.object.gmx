@@ -67,6 +67,7 @@ if(assets.working) {
     exit;
 }
 
+// Create scene, start with camera 
 with(instance_create(0,0, camera_orbit)) {
     distance = 1.5;
     zfar = 64;
@@ -74,26 +75,6 @@ with(instance_create(0,0, camera_orbit)) {
     
     rotx = -30;
     rotz = 30;
-}
-
-// Create core
-core_layers = ds_list_create();
-var n = 8;
-for(var i = 0; i &lt; n; i++) {
-    with(instance_create(0,0, mesh_object)) {
-        scalx = lerp(1, 1.1875, i/n);
-        scaly = scalx;
-        scalz = scalx;
-    
-        data = assets.meshes[?"sphere"];
-        texture = assets.textures[?"lava-noise"];
-        
-        shader = shd_lava;
-        samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
-        uniforms[?"u_Subtract"] = i/n;
-        
-        ds_list_add(other.core_layers, id); 
-    }
 }
 
 // Create earth 'crust'
@@ -108,7 +89,7 @@ for(var i = 0; i &lt; n; i++) {
         ///rotx = random(360);
         //rotz = random(360); 
         
-        // Instead create a random vector, normalize, use as orientation
+        // Instead create a random vector, use as orientation
         var ox, oy, oz;
         ox = random_range(1,-1);
         oy = random_range(1,-1);
@@ -138,6 +119,26 @@ for(var i = 0; i &lt; n; i++) {
         swing_offset = random(swing_time);
         
         ds_list_add(other.pillars, id); 
+    }
+}
+
+// Create core
+core_layers = ds_list_create();
+var n = 8;
+for(var i = n; i &gt; 0; i--) {
+    with(instance_create(0,0, mesh_object)) {
+        scalx = lerp(1, 1.41421356, i/n);
+        scaly = scalx;
+        scalz = scalx;
+    
+        data = assets.meshes[?"sphere"];
+        texture = assets.textures[?"lava-noise"];
+        
+        shader = shd_lava;
+        samplers[?"u_Ramp"] = assets.textures[?"lava-ramp"];
+        uniforms[?"u_Subtract"] = i/n;
+        
+        ds_list_insert(other.core_layers, 0, id); 
     }
 }
 
