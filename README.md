@@ -64,4 +64,14 @@ and the cylinder's UV's are transformed in the vertex shader to only cover six r
 
 This mostly works, the only exception is when two cylinders with very different brightnesses overlap.
 
-Lastly, we need to give the cylinders the feeling that they are over a molten core, so we add a weak ambient lighting. 
+Lastly, we need to give the cylinders the feeling that they are over a molten core, so we add a weak ambient lighting.
+
+### Assets ###
+
+### Basic renderer ###
+
+### Mesh shader settings ###
+
+### Asset loading ###
+
+### Utility scripts ### 
