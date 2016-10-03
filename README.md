@@ -99,8 +99,66 @@ However, if we want to generate a mesh, we also need to know how detailed it sho
 The loader dequeues a single task in each step to execute. This way we can have very simple ( and non-animated! )
 progress bars. You could also easily extend this loader to support async tasks ( like load an image from a URL and
 not block while we wait for the image ). Just make each task an object, that lives until the task is complete
-( and preferably does not ruin the framerate too much ). 
+( and preferably does not ruin the framerate too much ).
 
 ### Meshes ###
 
+See _mesh_data_. We could easily go with just storing vertex buffers in the _assets_ object's mesh pool, but that's
+a bit limited. Storing some form of additional mesh data ( even if it's just a vertex count ) gives many more
+possibilities. To stay with our example, we could easily output the amount of submitted vertices, or the number
+of rendered faces just by simply keeping an accumulator variable.
+
+This also lets us easily manipulate meshes - transform them, remove faces, bend them, or even spawn a particle at
+each vertex for some fun effects. This also increases memory usage, so the mesh data lists could be just cleared
+after the mesh is built ( aka. its vertex buffer is generated from the lists containing vertex data ).
+
+ ---
+
+Since a single mesh could be rendered multiple times at different places, we also have a _mesh_object_ object.
+These point to a _mesh_data_ instance to use, and have their own transform.
+
+The more interesting part about this object is that it also handles shader data. Now I'm not saying that this
+is generally a nice design, since in more complex renderers and scenes, the same mesh instance could be rendered
+multiple times per frame, with different shaders, parameters and goals.
+
+However, in our case, each mesh instance is rendered only once, with only one shader, per frame. So it made sense
+to store the shader settings in the instance itself, too. This allows for a very handy and convenient way
+to specify shader settings. Combine this with the ease of querying resources, and you get something like this:
+
+```
+// From scene object, Alarm 0 event:
+with(instance_create(0,0, mesh_object)) {
+    data = assets.meshes[?"cylinder"];
+    texture = assets.textures[?"earth-ramp"];
+
+    // [...]
+
+    shader = shd_earth;
+
+    samplers[?"u_Sides"] = assets.textures[?"sides"];
+    samplers[?"u_Noise"] = assets.textures[?"grass-noise"];
+    samplers[?"u_GrassRamp"] = assets.textures[?"grass-ramp"];
+
+    uniforms[?"u_GrassStart"] = random_range(0.925, 0.975);
+    uniforms[?"u_SideIntensity"] = random_range(0.75, 1);
+    uniforms[?"u_Ambient"] = array(0.95/4, 0.325/4, 0.0/4, 0.0);
+    uniforms[?"u_TextureMatrix"] = matrix_build(irandom(32)/32,0,0, 0,0,0, 6/32,1,1);
+
+    // [...]
+}
+```
+
+You can update these values at any time, so animating shader parameters is pretty easy as well.
+
 ### Utility scripts ###
+
+See _concat_. This script takes an arbitrary amount of arguments, concatenates them as strings
+and returns the result. Handy for most kind of string assembly. Until we have a 16 argument
+limit, keep an eye on that.
+
+_rtdbg_ stands for real-time debug. Whether this makes sense or not ( it blocks the whole game ),
+I'll let you be the judge of that. Argument-wise it is the same as _concat_, except it displays
+the result in a message box.
+
+__All scripts in the project are public domain. This includes everything in the scripts directory.__
+For the rest of the project, see [LICENSE](LICENSE). 
