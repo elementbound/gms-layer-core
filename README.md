@@ -31,8 +31,8 @@ After adding 21 MBs of 2k PNG files and running it again:
 
 The demo starts off in full-screen, in desktop resolution by default. You can change this behaviour by changing rSize's Creation
 Code. Most of it is self-explanatory. There are two modes of anti-aliasing. You can set aa_mode to _'msaa'_, which is the default
-method supported by GMS. The other method, _'brute'_ is a quick hack, because _'msaa"_ doesn't smooth the edges inside the core.
-If you use _'brute'_, it's not really worth it to set _aa_ above 2. 
+method supported by GMS. The other method, _'brute'_ is a quick hack, because _'msaa'_ doesn't smooth the edges inside the core.
+If you use _'brute'_, it's not really worth it to set _aa_ above 2.
 
 ## Code ##
 
@@ -75,10 +75,32 @@ Lastly, we need to give the cylinders the feeling that they are over a molten co
 
 ### Assets ###
 
-### Basic renderer ###
+The sample uses a very basic asset manager. The concept is to have a central object managing all the resources, with
+a dedicated map to each resource type. These can be later used to access each resource by name. If you'd like to get
+more fancy, you could write get/set/exists/load scripts for each resource type. This would allow for a 'default'
+resource to be returned when the selected one doesn't exist. This can't easily be done with the raw map accesses
+I do in this sample.
 
-### Mesh shader settings ###
+ ---
 
-### Asset loading ###
+Another aspect of the asset management is loading. You could delegate this functionality to a different object, and
+you could also separate the loading code to different objects/scripts, but in our case, the assets are simple enough
+to just have everything in the _assets_ object.
+
+So, we have a queue for resources to be loaded. Each resource is queued as a (type, name, data...) triplet. Note that
+the data part can have multiple values.
+
+For example, the only data a texture needs is the file name:
+> ('texture', 'earth-ramp', 'textures/earth-gradient.png')
+
+However, if we want to generate a mesh, we also need to know how detailed it should be:
+> ('mesh/gen', 'cylinder', meshgen_cylinder, 6)
+
+The loader dequeues a single task in each step to execute. This way we can have very simple ( and non-animated! )
+progress bars. You could also easily extend this loader to support async tasks ( like load an image from a URL and
+not block while we wait for the image ). Just make each task an object, that lives until the task is complete
+( and preferably does not ruin the framerate too much ). 
+
+### Meshes ###
 
 ### Utility scripts ###
