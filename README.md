@@ -29,6 +29,11 @@ After adding 21 MBs of 2k PNG files and running it again:
 
 ## Settings ##
 
+The demo starts off in full-screen, in desktop resolution by default. You can change this behaviour by changing rSize's Creation
+Code. Most of it is self-explanatory. There are two modes of anti-aliasing. You can set aa_mode to _'msaa'_, which is the default
+method supported by GMS. The other method, _'brute'_ is a quick hack, because _'msaa"_ doesn't smooth the edges inside the core.
+If you use _'brute'_, it's not really worth it to set _aa_ above 2. 
+
 ## Code ##
 
 Some things worth checking out are:
