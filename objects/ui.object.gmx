@@ -33,6 +33,85 @@ show_ui = true;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(base64_encode(keyboard_string) == 'bmV2ZXJnb25uYWxldHlvdWRvd24=') {
+    keyboard_string = "";
+    
+    var url = 'aHR0cHM6Ly91cGxvYWQud2lraW1lZGlhLm9yZy93aWtpcGVkaWEvZW4vOS85Yi9SaWNrYXN0bGV5cG9zdGVyLmpwZw==';
+    back = background_add(base64_decode(url), 0,0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="60">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(async_load['status'] &lt; 0) {
+    rtdbg('Load fail! ', async_load['status']);
+    exit;
+}
+
+var tex = background_get_texture(back);
+
+with(texture_g) {
+    if(assets.textures[?'lava-ramp'] == id)
+        continue; 
+    if(assets.textures[?'earth-ramp'] == id)
+        continue; 
+    if(assets.textures[?'grass-ramp'] == id)
+        continue; 
+
+    if(object_index == texture_volatile) {
+        if(surface_exists(surface))
+            surface_free(surface); 
+            
+        surface = application_surface; 
+    }
+    else if(object_index == texture_permanent) {
+        background_delete(background);
+        background = -1;
+        source = "&lt;internal&gt;";
+    }
+    
+    data = tex; 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="77">
       <action>
         <libid>1</libid>
